@@ -1,0 +1,11 @@
+.hero {
+  display: flex;
+  gap: 40px;
+}
+
+.badge {
+  background-color: #132181;
+  margin-right: 10px;
+  color: #fff;
+  padding: 5px;
+}
