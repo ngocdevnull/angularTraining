@@ -46,8 +46,6 @@ export class HeroDetailComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const inputValueChange: SimpleChange = changes['inputValue'];
-    console.log(inputValueChange)
-
     if (inputValueChange) {
       this.previousValue = inputValueChange.currentValue;
     }
