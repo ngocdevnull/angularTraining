@@ -9,10 +9,25 @@ import { MessagesService } from '../messages.service';
   styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent {
-  constructor(private heroService: HeroService,private messagesService: MessagesService) {}
+  constructor(
+    private heroService: HeroService,
+    private messagesService: MessagesService
+  ) {}
   selectedHero?: Hero;
   heroes: Hero[] = [];
+  inputValue: string | null = '';
+  maxFiles: number = 3;
+  tooFewFiles: boolean = false;
+  onFileChange(event: any) {
+    const selectedFiles: FileList = event.target.files;
 
+    if (selectedFiles.length !== this.maxFiles) {
+      this.tooFewFiles = true;
+      event.target.value = null;
+    } else {
+      this.tooFewFiles = false;
+    }
+  }
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
     this.messagesService.add(`Selected hero id=${hero.id}`);
@@ -27,17 +42,16 @@ export class HeroesComponent {
 
   add(name: string): void {
     name = name.trim();
-    if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-      });
+    if (!name) {
+      return;
+    }
+    this.heroService.addHero({ name } as Hero).subscribe((hero) => {
+      this.heroes.push(hero);
+    });
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroes = this.heroes.filter((h) => h !== hero);
     this.heroService.deleteHero(hero.id).subscribe();
   }
-
-  
 }

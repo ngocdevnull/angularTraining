@@ -1,5 +1,9 @@
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
-
+<app-hero-detail
+  [hero]="selectedHero"
+  [inputValue]="inputValue || ''"
+></app-hero-detail>
+<input (change)="onFileChange($event)" type="file" multiple />
+<p *ngIf="tooFewFiles">Please select exactly {{ maxFiles }} files.</p>
 <h2>My Heroes</h2>
 <ul class="heroes">
   <li class="hero" *ngFor="let hero of heroes">
@@ -25,12 +29,9 @@
     </button>
   </li>
 </ul>
-
 <div>
   <label for="new-hero">Hero name: </label>
   <input id="new-hero" #heroName />
-
-  <!-- (click) passes input value to add() and then clears the input -->
   <button
     type="button"
     class="add-button"

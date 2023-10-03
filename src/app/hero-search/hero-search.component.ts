@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
@@ -14,7 +17,6 @@ import { HeroService } from '../hero.service';
 })
 export class HeroSearchComponent implements OnInit {
   constructor(private heroService: HeroService) {}
-
   heroes$!: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
 
@@ -29,4 +31,6 @@ export class HeroSearchComponent implements OnInit {
       switchMap((term: string) => this.heroService.searchHeroes(term))
     );
   }
+
+
 }
