@@ -2,17 +2,21 @@ import { Component } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { MessagesService } from '../messages.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css'],
 })
+
 export class HeroesComponent {
   constructor(
     private heroService: HeroService,
-    private messagesService: MessagesService
-  ) {}
+    private messagesService: MessagesService,
+    route: ActivatedRoute
+  ) {
+    route.params.subscribe((params) => console.log(params));
+  }
   selectedHero?: Hero;
   heroes: Hero[] = [];
   inputValue: string | null = '';
