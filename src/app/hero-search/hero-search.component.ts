@@ -21,6 +21,7 @@ export class HeroSearchComponent implements OnInit {
 
   search(term: string): void {
     this.searchTerms.next(term);
+    console.log(2222)
   }
 
   ngOnInit(): void {
