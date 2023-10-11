@@ -3,7 +3,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {debounceTime, switchMap} from 'rxjs/operators';
 import {Hero} from '../hero';
 import {HeroService} from '../hero.service';
 
@@ -20,10 +20,12 @@ export class HeroSearchComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   search(term: string): void {
+    console.log(55555)
     this.searchTerms.next(term);
   }
 
   ngOnInit(): void {
+    console.log(44444)
     this.heroes$ = this.searchTerms.pipe(
       debounceTime(300),
       // distinctUntilChanged(),
